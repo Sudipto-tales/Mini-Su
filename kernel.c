@@ -4,54 +4,49 @@
 #include "kernel.h"
 #include "logo.h"
 #include "textpad.h"
-#include "trashbin.h"
 #include "clock.h"
 #include "music.h"
+#include "power.h"
 
+#include "functions.h"
+#include "config.h"
 
-void clear_screen() {
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
-}
-void play_music();
-void show_home() {
+void show_home()
+{
     clear_screen();
     show_home_banner();
-    printf("\n\n=== Mini OS Home ===\n\n");
+    print_digital_clock_header();
+
+    printf("\n\n=== %s Home ===\n\n", OS_NAME);
     printf("1. Open TextPad\n");
-    printf("2. Open TrashBin\n");
-    printf("3. Show Clock\n");
-    printf("4. Play Music\n");
-    printf("5. Exit\n");
-    printf("Choose option: ");
+    printf("2. Show Clock\n");
+    printf("3. Play Music\n");
+    printf("4. Exit\n");
 }
 
-void start_kernel() {
+void start_kernel()
+{
+    int choice;
 
-    while (1) {
+    while (1)
+    {
         show_home();
+        choice = get_user_choice("Choose option: ", 1, 4);
 
-        int choice = 0;
-        scanf("%d%*c", &choice);
-
-        if (choice == 1) {
+        switch (choice)
+        {
+        case 1:
             launch_textpad();
-        } else if (choice == 2) {
-            launch_trashbin();
-        } else if (choice == 3) {
-            launch_clock();
-        } else if (choice == 4) {
-            play_music();
-        } else if (choice == 5) {
             break;
-        } else {
-            printf("Invalid option.\n");
+        case 2:
+            launch_clock();
+            break;
+        case 3:
+            play_music();
+            break;
+        case 4:
+            power_screen();
+            break;
         }
-
     }
-
-    printf("Goodbye!\n");
 }

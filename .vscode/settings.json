@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.py": "python",
+        ".env*": "dotenv",
+        "textpad.h": "c"
+    }
+}

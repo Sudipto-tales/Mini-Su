@@ -1,0 +1,9 @@
+# AUTHORS
+
+Project: Mini-Su (Mini OS)
+
+Contributors:
+
+- Sudipta Ghosh <mr.sudiptaghosh0@example.com>  — Original author, developer
+
+Thank you to everyone who contributed to this project!
